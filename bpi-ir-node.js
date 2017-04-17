@@ -4,14 +4,22 @@ module.exports = function(RED) {
         var ir = new IR();
         RED.nodes.createNode(this,config);
         this.debug = config.debug || false;
+        this.device = config.device || {};
         this.keyMap = config.keymap || {};
         var node = this;
+        //console.log('BPI: IR config.device:' + config.device)
         this.on('close', function() {
             if (ir !== undefined && ir.stop !== undefined) {
                 ir.stop();
             }
         });
-        ir.start();
+        var dev = '/dev/input/event5';
+        //console.log('BPI: IR node.device:' + node.device)
+        if (node.device != undefined) {
+            dev = node.device;
+        }
+        console.log('BPI: IR ' + dev)
+        ir.start(dev);
 	var lastKey = null;
         var mappKey = function(key) {
             var mappedKey = node.keyMap[key];

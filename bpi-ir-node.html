@@ -7,6 +7,7 @@
         defaults: {
             name:    { value: "" },
             debug: {value: false, required: true },
+            device: {type:'text', required: false },
             keymap: {value: {}, required: true }
         }, 
         label: function() {
@@ -68,6 +69,10 @@
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-device"><i class="icon-tag"></i> Device</label>
+        <input type="text" id="node-input-device" placeholder="/dev/input/event5">
     </div>
     <div class="form-row">
         <label for="node-input-debug"><i class="icon-info-circle"></i> Debug mode</label>
